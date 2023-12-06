@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svidal <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: svidal <svidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 13:10:48 by svidal            #+#    #+#             */
-/*   Updated: 2023/02/07 12:52:18 by svidal           ###   ########.fr       */
+/*   Updated: 2023/12/06 18:14:37 by svidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
+/*
 size_t	ft_strlen(const char *str)
 {
 	size_t	i;
@@ -21,3 +21,4 @@ size_t	ft_strlen(const char *str)
 		i++;
 	return (i);
 }
+*/
