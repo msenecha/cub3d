@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svidal <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: svidal <svidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 18:08:28 by svidal            #+#    #+#             */
-/*   Updated: 2023/02/14 17:08:29 by svidal           ###   ########.fr       */
+/*   Updated: 2023/12/06 17:53:54 by svidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 char	*ft_strchr(const char *str, int c)
 {
+	if (!str)
+		return (NULL);
 	while (*str != (char)c)
 	{
 		if (!*str)

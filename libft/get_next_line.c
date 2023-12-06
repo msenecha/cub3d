@@ -6,10 +6,11 @@
 /*   By: svidal <svidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 11:05:50 by svidal            #+#    #+#             */
-/*   Updated: 2023/03/13 17:36:26 by svidal           ###   ########.fr       */
+/*   Updated: 2023/12/06 17:26:30 by svidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "get_next_line.h"
 #include <fcntl.h>
 #include <stdio.h>

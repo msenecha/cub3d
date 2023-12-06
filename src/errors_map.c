@@ -6,7 +6,7 @@
 /*   By: svidal <svidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 18:15:08 by svidal            #+#    #+#             */
-/*   Updated: 2023/12/05 19:44:11 by svidal           ###   ########.fr       */
+/*   Updated: 2023/12/06 18:27:53 by svidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 //check map extension
 void	ft_map_ext_error(const char *filename, t_general *general)
 {
-	const char	*correct_ext;
+	char	*correct_ext;
 
 	correct_ext = ft_strrchr(filename, '.');
 	if (correct_ext == NULL || ft_strcmp(correct_ext, ".cub") != 0 || correct_ext[1] == '\0')
@@ -23,6 +23,7 @@ void	ft_map_ext_error(const char *filename, t_general *general)
 }
 
 //empty map
+//verifier si j'ai le droit d'avoir une ligne vide au debut du fichier
 void	ft_empty_map_error(t_general *general)
 {
 	size_t	first_line_len;
@@ -37,6 +38,7 @@ void	ft_empty_map_error(t_general *general)
 
 //check walls at the edges
 // VERIFIER SI AJOUT DU -1 SUFFIT POUR CHECK LES MURS
+/*
 void	ft_map_wall_error(t_general *general)
 {
 	int	i;
@@ -58,8 +60,10 @@ void	ft_map_wall_error(t_general *general)
 		i++;
 	}
 }
+*/
 
 //check invalid character inside the map
+//check que dans la map en ignorant les infos du dessus
 void	ft_invalid_char_error(t_general *general)
 {
 	char	cell;
@@ -84,6 +88,7 @@ void	ft_invalid_char_error(t_general *general)
 	}
 }
 
+//pas bon compter le nb de player ds la map avec les 4 lettres
 void	ft_wrong_nb_player(t_general *general)
 {
 	if (general->player_ptr.nb_player != 1)

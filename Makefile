@@ -6,17 +6,18 @@
 #    By: svidal <svidal@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/01 15:12:37 by svidal            #+#    #+#              #
-#    Updated: 2023/12/01 15:17:14 by svidal           ###   ########.fr        #
+#    Updated: 2023/12/06 17:55:24 by svidal           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ################################ SOURCES ################################
 
-SRCS_DIR = ./srcs/
+SRC_DIR = ./src/
 
-SRCS	=	main.c
+SRC	=	main.c init.c init_2.c map.c errors_file_arg.c errors_map.c \
+			errors_map_2.c free_and_exit.c mlx.c
 
-OBJS	=	${addprefix ${SRCS_DIR}, $(SRCS:.c=.o)}
+OBJS	=	${addprefix ${SRC_DIR}, $(SRC:.c=.o)}
 
 
 ################################ LIBFT ################################
@@ -37,7 +38,7 @@ NAME	=	cub3d
 
 CC		=	gcc
 
-CFLAGS	=	-Wall -Wextra -Werror -g
+CFLAGS	=	-Wall -Wextra -Werror -g -fsanitize=address
 MFLAGS	=	-ldl -lmlx -L${MLX_DIR} -lm -lXext -lX11 -Imlx $(MLX_PATH)
 IFLAGS	=	-I ./includes
 LFLAGS	=	-L $(LIBFT_DIR) -lft
@@ -55,9 +56,11 @@ $(NAME): libft mlx $(OBJS)
 %.o:	%.c
 		@$(CC) $(CFLAGS) -c $< -o $@
 
+.SILENT:
 libft:
 		@$(MAKE) -C $(LIBFT_DIR)
 
+.SILENT:
 mlx:
 		@$(MAKE) -C $(MLX_DIR)
 

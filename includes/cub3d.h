@@ -6,7 +6,7 @@
 /*   By: svidal <svidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:12:22 by svidal            #+#    #+#             */
-/*   Updated: 2023/12/05 20:06:50 by svidal           ###   ########.fr       */
+/*   Updated: 2023/12/06 17:42:31 by svidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@
 # define WALL '1'
 # define FLOOR '0'
 
-# define WIN_WIDTH 640
-# define WIN_HEIGHT 480
+# define WIN_WIDTH 640 //largeur
+# define WIN_HEIGHT 480 //hauteur
 # define TEXTURE_SIZE 64
 
 // STRUCTURES
@@ -70,6 +70,8 @@ typedef struct s_map
 	int			map_height;
 	int			nb_lines;
 	int			nb_columns;
+	int			nb_lines_cpy;
+	int			nb_columns_cpy;
 	//int			fd;
 }	t_map;
 
@@ -98,7 +100,7 @@ typedef struct s_pst
 
 typedef struct s_player
 {
-	char	dir;
+	char	*dir;
 	double	pst_x; // position du joueur
 	double	pst_y;
 	double	dir_x; // vecteur de direction (commence à -1 pour N, 1 pour S, 0 sinon)
@@ -189,5 +191,13 @@ void	ft_init_s_player(t_player *player_ptr);
 void	ft_init_s_txtr(t_txtr *txtr_ptr);
 void	ft_init_s_ray(t_ray *ray_ptr);
 void	ft_init_s_gen(t_general *general);
+
+/* map */
+void	ft_fill_map(int fd, int row, int column, t_general *general);
+void	ft_creation_map(char *filename, t_general *general);
+int		ft_nb_lines_map(char *filename, t_general *general);
+
+/* mlx */
+void	ft_mlx_win(t_general *general);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: svidal <svidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 16:54:52 by msenecha          #+#    #+#             */
-/*   Updated: 2023/12/05 20:10:45 by svidal           ###   ########.fr       */
+/*   Updated: 2023/12/06 17:42:42 by svidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ int	main(int argc, char **argv)
 		filename = argv[1];
 		if (ft_check_file(filename, general) == 0)
 			return (1);
-		// creation map
-		// nb items ?
+		ft_creation_map(filename, general);
 		ft_map_ext_error(filename, general);
 		ft_all_errors(general);
 		ft_init_s_gen(general);
+		ft_mlx_win(general);
 		// init mlx, textures
 		// img display
 		// start game
