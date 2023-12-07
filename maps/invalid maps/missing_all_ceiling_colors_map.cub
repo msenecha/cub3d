@@ -1,9 +1,10 @@
-NO
-SO
-WE
-EA
+NO ./textures/NO_texture.xpm
+SO		./textures/SO_texture.xpm
+WE  ./textures/WE_texture.xpm
+EA ./textures/EA_texture.xpm
 
-F
+F 255, 0, 20
+
 
 111111
 100101

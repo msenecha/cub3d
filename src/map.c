@@ -6,7 +6,7 @@
 /*   By: svidal <svidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:48:54 by svidal            #+#    #+#             */
-/*   Updated: 2023/12/06 17:08:10 by svidal           ###   ########.fr       */
+/*   Updated: 2023/12/07 17:50:50 by svidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,26 @@ int	ft_nb_lines_map(char *filename, t_general *general)
 	}
 	close(fd);
 	return(general->map_ptr.nb_lines);
+}
+
+int	ft_max_line_len(char *filename)
+{
+	char	*line;
+	int		fd;
+	int		len_max;
+	int		current_len;
+
+	fd = open(filename, O_RDONLY);
+	len_max = 0;
+	while ((line = get_next_line(fd)) != NULL)
+	{
+		current_len = ft_strlen(line);
+		if (current_len > len_max)
+			len_max = current_len;
+		free(line);
+	}
+	close(fd);
+	return (len_max);
 }
 
 void	ft_fill_map(int fd, int row, int column, t_general *general)
@@ -61,14 +81,15 @@ void	ft_fill_map(int fd, int row, int column, t_general *general)
 
 void	ft_creation_map(char *filename, t_general *general)
 {
-	size_t	column;
-	int			row;
-	int			fd;
+	int	column;
+	int	row;
+	int	fd;
 
 	column = 0;
 	row = 0;
 	//ft_init_s_gen(general); au cas ou pas de place dans le main
 	general->map_ptr.nb_lines = ft_nb_lines_map(filename, general);
+	general->map_ptr.nb_columns = ft_max_line_len(filename);
 	general->map_ptr.map = malloc((general->map_ptr.nb_lines + 1) * sizeof(char *));
 	if (general->map_ptr.map == NULL)
 		return ;

@@ -1,10 +1,16 @@
-NO
-SO
-WE
-EA
+NO ./textures/NO_texture.xpm
+SO		./textures/SO_texture.xpm
+WE  ./textures/WE_texture.xpm
 
-F
-C
+
+EA ./textures/EA_texture.xpm
+
+F 255, 0, 20
+
+C    150,    200, 220
+
+
+
 
 1111111111
 1000000001
@@ -13,5 +19,5 @@ C
 100N001001
 101000100111111111
 100000100000000001
-1V000000001000E001
+1V000000001000X001
 111111111111111111
