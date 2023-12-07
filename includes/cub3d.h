@@ -6,7 +6,7 @@
 /*   By: svidal <svidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:12:22 by svidal            #+#    #+#             */
-/*   Updated: 2023/12/06 17:42:31 by svidal           ###   ########.fr       */
+/*   Updated: 2023/12/07 17:49:56 by svidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,6 +196,7 @@ void	ft_init_s_gen(t_general *general);
 void	ft_fill_map(int fd, int row, int column, t_general *general);
 void	ft_creation_map(char *filename, t_general *general);
 int		ft_nb_lines_map(char *filename, t_general *general);
+int	ft_max_line_len(char *filename);
 
 /* mlx */
 void	ft_mlx_win(t_general *general);
