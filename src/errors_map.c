@@ -6,7 +6,7 @@
 /*   By: svidal <svidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 18:15:08 by svidal            #+#    #+#             */
-/*   Updated: 2023/12/07 17:33:58 by svidal           ###   ########.fr       */
+/*   Updated: 2023/12/08 15:58:22 by svidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,34 +30,9 @@ void	ft_empty_map_error(t_general *general)
 
 }
 
-//check walls at the edges
-// VERIFIER SI AJOUT DU -1 SUFFIT POUR CHECK LES MURS
-/*
-void	ft_map_wall_error(t_general *general)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < general->map_ptr.nb_lines - 1)
-	{
-		j = 0;
-		while (j < general->map_ptr.nb_columns - 1)
-		{
-			if ( i == 0 || j == 0 || i == general->map_ptr.nb_lines - 1 || j == general->map_ptr.nb_columns - 1)
-			{
-				if (general->map_ptr.map[i][j] != '1')
-					ft_error_msg("Error: missing wall(s) on the edges!\n", general);
-			}
-			j++;
-		}
-		i++;
-	}
-}
-*/
 
 //check invalid character inside the map
-//NE MARCHE PAS
+// NE MARCHE PAAAAASSSSSSSSSSSSSSSSS
 /*
 void	ft_invalid_char_error(t_general *general)
 {
@@ -67,8 +42,11 @@ void	ft_invalid_char_error(t_general *general)
 
 	i = 0;
 	//j'ignore lignes vides ou lignes de textures et couleurs
-	printf("general->map_ptr.nb_lines: %d\n", general->map_ptr.nb_lines);
+
+	printf("nb_lines: %d\n", general->map_ptr.nb_lines);
+	printf("nb_columns: %d\n", general->map_ptr.nb_columns);
 	while (i < general->map_ptr.nb_lines && (ft_strlen(general->map_ptr.map[i]) == 0
+			|| ft_white_space(general->map_ptr.map[i])
 			|| ft_strcmp(general->map_ptr.map[i], "NO") == 0
 			|| ft_strcmp(general->map_ptr.map[i], "SO") == 0
 			|| ft_strcmp(general->map_ptr.map[i], "WE") == 0
@@ -88,6 +66,7 @@ void	ft_invalid_char_error(t_general *general)
 			//check caractere invalide dans la map
 			if (c != 'N' && c != 'S' && c != 'E' && c != 'W' && c != '0' && c != '1')
 			{
+				printf("invalid characters starting from line %d\n", i);
 				ft_error_msg("Error: invalid character in the game!\n", general);
 				return ;
 			}
@@ -97,6 +76,21 @@ void	ft_invalid_char_error(t_general *general)
 	}
 }
 */
+
+bool	ft_ignore_empty_and_config(char *line)
+{
+	int	k;
+
+	k = 0;
+	if (ft_strlen(line) == 0 || (line[0] != '0' && line[0] != '1'))
+		return (false);
+	while (line[k] == ' ' || line[k] == '\t')
+		k++;
+	if (line[k] == '\0' || (line[k] != '1' && line[k] != '0'))
+		return (false);
+	return (true);
+}
+
 void	ft_invalid_char_error(t_general *general)
 {
 	char	c;
@@ -105,8 +99,9 @@ void	ft_invalid_char_error(t_general *general)
 
 	i = 0;
 	//j'ignore les lignes qui ne commencent pas par 0 ou 1
-	while (i < general->map_ptr.nb_lines && (general->map_ptr.map[i][0] != '1' && general->map_ptr.map[i][0] != '0'))
-		i++;
+	//while (i < general->map_ptr.nb_lines && !ft_ignore_empty_and_config(general->map_ptr.map[i]))
+	//	i++;
+	printf("invalid characters starting from line %d\n", i);
 	printf("nb_lines: %d\n", general->map_ptr.nb_lines);
 	printf("nb_columns: %d\n", general->map_ptr.nb_columns);
 	while (i < general->map_ptr.nb_lines)
@@ -128,6 +123,7 @@ void	ft_invalid_char_error(t_general *general)
 }
 
 // check nb players inside the map -> OK
+
 void	ft_wrong_nb_player(t_general *general)
 {
 	char	c;
@@ -136,11 +132,13 @@ void	ft_wrong_nb_player(t_general *general)
 	int		j;
 
 	nb_players = 0;
-	i = 1;
-	while (i < general->map_ptr.nb_lines - 1)
+	i = 0;
+	//while (i < general->map_ptr.nb_lines && !ft_ignore_empty_and_config(general->map_ptr.map[i]))
+	//	i++;
+	while (i < general->map_ptr.nb_lines)
 	{
-		j = 1;
-		while (j < general->map_ptr.nb_columns - 1)
+		j = 0;
+		while (j < general->map_ptr.nb_columns )
 		{
 			c = general->map_ptr.map[i][j];
 			if (c == 'N' || c == 'S' || c == 'E' || c == 'W')

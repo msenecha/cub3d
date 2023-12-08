@@ -6,7 +6,7 @@
 #    By: svidal <svidal@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/01 15:12:37 by svidal            #+#    #+#              #
-#    Updated: 2023/12/06 17:55:24 by svidal           ###   ########.fr        #
+#    Updated: 2023/12/08 14:55:37 by svidal           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 SRC_DIR = ./src/
 
 SRC	=	main.c init.c init_2.c map.c errors_file_arg.c errors_map.c \
-			errors_map_2.c free_and_exit.c mlx.c
+			errors_map_2.c errors_map_utils.c free_and_exit.c mlx.c
 
 OBJS	=	${addprefix ${SRC_DIR}, $(SRC:.c=.o)}
 
