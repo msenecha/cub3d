@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svidal <svidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:38:35 by svidal            #+#    #+#             */
-/*   Updated: 2023/12/05 19:56:06 by svidal           ###   ########.fr       */
+/*   Updated: 2023/12/12 15:42:44 by svidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	ft_init_s_img(t_img *img_ptr)
 
 void	ft_init_s_pst(t_pst *pst_ptr)
 {
-	pst_ptr->pst_x = 0.0;
-	pst_ptr->pst_y = 0.0;
+	pst_ptr->first_pst_x = 0.0;
+	pst_ptr->first_pst_y = 0.0;
 }
 
 void	ft_init_s_player(t_player *player_ptr)
@@ -51,19 +51,4 @@ void	ft_init_s_player(t_player *player_ptr)
 	player_ptr->move_x = 0;
 	player_ptr->move_y = 0;
 	player_ptr->rotate = 0;
-	player_ptr->nb_player = 1;
 }
-
-void	ft_init_s_txtr(t_txtr *txtr_ptr)
-{
-	txtr_ptr->north = NULL;
-	txtr_ptr->south = NULL;
-	txtr_ptr->east = NULL;
-	txtr_ptr->west = NULL;
-	txtr_ptr->floor = 0;
-	txtr_ptr->wall = 0;
-	txtr_ptr->size = 0;
-	txtr_ptr->tex_x = 0;
-	txtr_ptr->tex_y = 0;
-}
-//other init to be done for textures

@@ -6,11 +6,25 @@
 /*   By: svidal <svidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 19:38:45 by svidal            #+#    #+#             */
-/*   Updated: 2023/12/05 20:09:33 by svidal           ###   ########.fr       */
+/*   Updated: 2023/12/12 14:15:00 by svidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+void	ft_init_s_txtr(t_txtr *txtr_ptr)
+{
+	txtr_ptr->north = NULL;
+	txtr_ptr->south = NULL;
+	txtr_ptr->east = NULL;
+	txtr_ptr->west = NULL;
+	txtr_ptr->floor = 0;
+	txtr_ptr->wall = 0;
+	txtr_ptr->size = 0;
+	txtr_ptr->tex_x = 0;
+	txtr_ptr->tex_y = 0;
+}
+//other init to be done for textures
 
 //voir ou on l'appelle celle la
 void	ft_init_s_ray(t_ray *ray_ptr)

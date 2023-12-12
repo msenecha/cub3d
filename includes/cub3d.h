@@ -6,7 +6,7 @@
 /*   By: svidal <svidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:12:22 by svidal            #+#    #+#             */
-/*   Updated: 2023/12/08 15:30:50 by svidal           ###   ########.fr       */
+/*   Updated: 2023/12/12 15:51:08 by svidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,16 +92,16 @@ typedef struct s_infos
 	//char	floor;
 }	t_infos;
 
-typedef struct s_pst
+typedef struct s_pst //position de depart du joueur
 {
-	double			pst_x;
-	double			pst_y;
+	double			first_pst_x; // x = ligne
+	double			first_pst_y; // y = colonne
 }	t_pst;
 
 typedef struct s_player
 {
 	char	*dir;
-	double	pst_x; // position du joueur
+	double	pst_x; // position du joueur x
 	double	pst_y;
 	double	dir_x; // vecteur de direction (commence à -1 pour N, 1 pour S, 0 sinon)
 	double	dir_y;
@@ -192,6 +192,8 @@ void	ft_init_s_player(t_player *player_ptr);
 void	ft_init_s_txtr(t_txtr *txtr_ptr);
 void	ft_init_s_ray(t_ray *ray_ptr);
 void	ft_init_s_gen(t_general *general);
+void	ft_pst_player(t_general *general);
+int		ft_nb_players(t_general *general);
 
 /* map */
 void	ft_fill_map(int fd, int row, int column, t_general *general);
