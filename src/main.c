@@ -6,7 +6,7 @@
 /*   By: svidal <svidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 16:54:52 by msenecha          #+#    #+#             */
-/*   Updated: 2023/12/12 16:01:21 by svidal           ###   ########.fr       */
+/*   Updated: 2023/12/12 16:10:30 by svidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,18 @@ int	main(int argc, char **argv)
 
 
 /*probleme actuel :
+si 2 joueurs dans la map :
+
  ./cub3d ./maps/invalid\ maps/only_map.cub
-nb joueur(s): -1094795584
-nb joueur(s): -1094795584
+nb joueur(s): -1094795584 (printf dans main)
+nb joueur(s): -1094795584 (printf dans ft_wrong_nb_players)
+Error: the game must contain 1 player!
+
+si 0 joueur dans la map :
+
+ ./cub3d ./maps/invalid\ maps/only_map.cub
+nb joueur(s): -1094795586
+nb joueur(s): -1094795586
 Error: the game must contain 1 player!
 
 je ne recupere pas le nb de joueurs.
