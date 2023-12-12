@@ -6,7 +6,7 @@
 /*   By: svidal <svidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:48:54 by svidal            #+#    #+#             */
-/*   Updated: 2023/12/07 17:50:50 by svidal           ###   ########.fr       */
+/*   Updated: 2023/12/12 15:53:55 by svidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	ft_creation_map(char *filename, t_general *general)
 
 	column = 0;
 	row = 0;
-	//ft_init_s_gen(general); au cas ou pas de place dans le main
+	//general->map_ptr.map = NULL;
 	general->map_ptr.nb_lines = ft_nb_lines_map(filename, general);
 	general->map_ptr.nb_columns = ft_max_line_len(filename);
 	general->map_ptr.map = malloc((general->map_ptr.nb_lines + 1) * sizeof(char *));

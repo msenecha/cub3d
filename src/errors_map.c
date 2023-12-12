@@ -6,7 +6,7 @@
 /*   By: svidal <svidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 18:15:08 by svidal            #+#    #+#             */
-/*   Updated: 2023/12/08 15:58:22 by svidal           ###   ########.fr       */
+/*   Updated: 2023/12/12 14:09:39 by svidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,31 +122,10 @@ void	ft_invalid_char_error(t_general *general)
 	}
 }
 
-// check nb players inside the map -> OK
-
+// check nb players inside the map
 void	ft_wrong_nb_player(t_general *general)
 {
-	char	c;
-	int		nb_players;
-	int		i;
-	int		j;
-
-	nb_players = 0;
-	i = 0;
-	//while (i < general->map_ptr.nb_lines && !ft_ignore_empty_and_config(general->map_ptr.map[i]))
-	//	i++;
-	while (i < general->map_ptr.nb_lines)
-	{
-		j = 0;
-		while (j < general->map_ptr.nb_columns )
-		{
-			c = general->map_ptr.map[i][j];
-			if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
-				nb_players++;
-			j++;
-		}
-		i++;
-	}
-	if (nb_players != 1)
+	printf("nb joueur(s): %d\n", general->player_ptr.nb_player);
+	if (general->player_ptr.nb_player != 1)
 		ft_error_msg("Error: the game must contain 1 player!\n", general);
 }

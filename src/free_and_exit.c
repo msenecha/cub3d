@@ -6,7 +6,7 @@
 /*   By: svidal <svidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:38:11 by svidal            #+#    #+#             */
-/*   Updated: 2023/12/05 18:00:27 by svidal           ###   ########.fr       */
+/*   Updated: 2023/12/12 14:24:20 by svidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	ft_exit_game(t_general *general)
 	ft_free_map(general->map_ptr.map, general);
 	mlx_destroy_window(general->mlx_ptr, general->win_ptr);
 	mlx_destroy_display(general->mlx_ptr);
-	free(general->mlx_ptr);
+	//free(general->mlx_ptr); //double free ?
 	free(general);
 	exit (0);
 }
