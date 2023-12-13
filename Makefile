@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: svidal <svidal@student.42.fr>              +#+  +:+       +#+         #
+#    By: msenecha <msenecha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/01 15:12:37 by svidal            #+#    #+#              #
-#    Updated: 2023/12/12 15:58:37 by svidal           ###   ########.fr        #
+#    Updated: 2023/12/13 12:36:00 by msenecha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,7 @@ all: $(NAME)
 
 $(NAME): libft mlx $(OBJS)
 		@$(CC) $(CFLAGS) $(OBJS) $(IFLAGS) $(LFLAGS) -o $(NAME) $(MFLAGS)
+		@$(MAKE) clean
 
 %.o:	%.c
 		@$(CC) $(CFLAGS) -c $< -o $@

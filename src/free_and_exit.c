@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_and_exit.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svidal <svidal@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msenecha <msenecha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:38:11 by svidal            #+#    #+#             */
-/*   Updated: 2023/12/12 14:24:20 by svidal           ###   ########.fr       */
+/*   Updated: 2023/12/13 19:01:39 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ void	ft_free_map(char **tab, t_general *general)
 {
 	int	i;
 
+	(void)general;
 	i = 0;
-	while (i < general->map_ptr.nb_lines)
+	while (tab[i])
 	{
 		free(tab[i]);
 		i++;

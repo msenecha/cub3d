@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svidal <svidal@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msenecha <msenecha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:12:22 by svidal            #+#    #+#             */
-/*   Updated: 2023/12/12 15:51:08 by svidal           ###   ########.fr       */
+/*   Updated: 2023/12/13 19:07:29 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,24 +55,24 @@
 # define WALL '1'
 # define FLOOR '0'
 
-# define WIN_WIDTH 640 //largeur
-# define WIN_HEIGHT 480 //hauteur
+# define WIN_WIDTH 1920 //largeur
+# define WIN_HEIGHT 1080 //hauteur
 # define TEXTURE_SIZE 64
 
 // STRUCTURES
 
 typedef struct s_map
 {
-	char	**map;
-	char	**map_cpy;
-	char	*path;
+	char		**map;
+	char		**map_cpy;
+	char		**data;
+	char		*path;
 	int			map_width;
 	int			map_height;
 	int			nb_lines;
+	int			map_lines;
+	int			data_lines;
 	int			nb_columns;
-	int			nb_lines_cpy;
-	int			nb_columns_cpy;
-	//int			fd;
 }	t_map;
 
 typedef struct s_img
@@ -193,13 +193,14 @@ void	ft_init_s_txtr(t_txtr *txtr_ptr);
 void	ft_init_s_ray(t_ray *ray_ptr);
 void	ft_init_s_gen(t_general *general);
 void	ft_pst_player(t_general *general);
-int		ft_nb_players(t_general *general);
+void	ft_nb_players(t_general *general);
 
 /* map */
-void	ft_fill_map(int fd, int row, int column, t_general *general);
-void	ft_creation_map(char *filename, t_general *general);
-int		ft_nb_lines_map(char *filename, t_general *general);
-int		ft_max_line_len(char *filename);
+void	ft_split_map(char *filename, t_general *gen);
+void	ft_split_map_2(char *line, int fd, t_general *gen);
+char	**ft_copy_map(char **map_cpy, t_general *gen);
+void	ft_nb_lines(char *filename, t_general *gen);
+int		ft_max_line_len(char **map);
 
 /* mlx */
 void	ft_mlx_win(t_general *general);

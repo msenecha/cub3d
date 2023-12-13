@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   errors_file_arg.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svidal <svidal@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msenecha <msenecha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:43:50 by svidal            #+#    #+#             */
-/*   Updated: 2023/12/05 18:11:27 by svidal           ###   ########.fr       */
+/*   Updated: 2023/12/13 19:10:01 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	ft_error_msg(char *str, t_general *general)
 {
 	write(2, str, ft_strlen(str));
 	ft_free_map(general->map_ptr.map, general);
+	ft_free_map(general->map_ptr.map, general);
+	ft_free_map(general->map_ptr.data, general);
 	free(general);
 	exit(EXIT_FAILURE);
 }
@@ -27,7 +29,7 @@ int	ft_check_file(const char *filename, t_general *general)
 	int	fd;
 
 	fd = open(filename, O_RDONLY);
-	if (fd != 1)
+	if (fd != -1)
 	{
 		close(fd);
 		return (1);

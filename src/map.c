@@ -3,99 +3,116 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svidal <svidal@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msenecha <msenecha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:48:54 by svidal            #+#    #+#             */
-/*   Updated: 2023/12/12 15:53:55 by svidal           ###   ########.fr       */
+/*   Updated: 2023/12/13 19:07:17 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	ft_nb_lines_map(char *filename, t_general *general)
+void	ft_nb_lines(char *filename, t_general *gen)
 {
 	char	*line;
 	int		fd;
+	int		line_nb;
 
-	general->map_ptr.nb_lines = 0;
-	if (ft_check_file(filename, general) == 0)
-		return (0);
 	fd = open(filename, O_RDONLY);
+	line_nb = 0;
 	line = get_next_line(fd);
-	while (line != NULL)
+	while (line[0] < '0' || line[0] > '9')
 	{
-		general->map_ptr.nb_lines++;
+		line_nb++;
 		free(line);
 		line = get_next_line(fd);
 	}
+	gen->map_ptr.data_lines = line_nb;
+	line_nb = 0;
+	while (line != NULL)
+	{
+		line_nb++;
+		free(line);
+		line = get_next_line(fd);
+	}
+	gen->map_ptr.map_lines = line_nb;
 	close(fd);
-	return(general->map_ptr.nb_lines);
 }
 
-int	ft_max_line_len(char *filename)
+int	ft_max_line_len(char **map)
 {
-	char	*line;
-	int		fd;
 	int		len_max;
 	int		current_len;
-
-	fd = open(filename, O_RDONLY);
+	int		i;
+	
+	i = 0;
 	len_max = 0;
-	while ((line = get_next_line(fd)) != NULL)
+	while (map[i])
 	{
-		current_len = ft_strlen(line);
+		current_len = ft_strlen(map[i]);
 		if (current_len > len_max)
 			len_max = current_len;
-		free(line);
+		i++;
 	}
-	close(fd);
 	return (len_max);
 }
 
-void	ft_fill_map(int fd, int row, int column, t_general *general)
+char	**ft_copy_map(char **map_cpy, t_general *gen)
 {
-	char	*line;
+	char	**map;
 	int		i;
-
+	
 	i = 0;
-	line = get_next_line(fd);
+	map = malloc((gen->map_ptr.map_lines + 1) * sizeof(char *));
+	while (map_cpy[i])
+	{
+		map[i] = malloc((ft_strlen(map_cpy[i]) + 1) * sizeof(char));
+		map[i] = ft_strdup(map_cpy[i]);
+		i++;
+	}
+	map[i] = NULL;
+	return (map);
+}
+
+void	ft_split_map_2(char *line, int fd, t_general *gen)
+{
+	int	row;
+
+	row = 0;
 	while (line != NULL)
 	{
-		general->map_ptr.map[row] = malloc((ft_strlen(line) + 1) * sizeof(char));
-		if (general->map_ptr.map[row] == NULL)
-		{
-			ft_free_map(general->map_ptr.map, general);
-			return ;
-		}
-		while (line[i] != '\0')
-			general->map_ptr.map[row][column++] = line[i++];
-		general->map_ptr.map[row++][column] = '\0';
-		column = 0;
-		i = 0;
+		gen->map_ptr.map_cpy[row] = malloc((ft_strlen(line) + 1) * sizeof(char));
+		gen->map_ptr.map_cpy[row] = ft_strdup(line);
+		row++;
 		free(line);
 		line = get_next_line(fd);
 	}
-	general->map_ptr.map[row] = NULL;
-	free(general->map_ptr.map[row]);
+	gen->map_ptr.map_cpy[row] = NULL;
+	gen->map_ptr.nb_columns = ft_max_line_len(gen->map_ptr.map_cpy);
+	close(fd);
+	gen->map_ptr.map = ft_copy_map(gen->map_ptr.map_cpy, gen);
 }
 
-void	ft_creation_map(char *filename, t_general *general)
+void	ft_split_map(char *filename, t_general *gen)
 {
-	int	column;
-	int	row;
 	int	fd;
+	int	row;
+	char	*line;
 
-	column = 0;
-	row = 0;
-	//general->map_ptr.map = NULL;
-	general->map_ptr.nb_lines = ft_nb_lines_map(filename, general);
-	general->map_ptr.nb_columns = ft_max_line_len(filename);
-	general->map_ptr.map = malloc((general->map_ptr.nb_lines + 1) * sizeof(char *));
-	if (general->map_ptr.map == NULL)
-		return ;
-	if (ft_check_file(filename, general) == 0)
-		return ;
+	ft_nb_lines(filename, gen);
+	gen->map_ptr.data = malloc((gen->map_ptr.data_lines + 1) * sizeof(char *));
+	gen->map_ptr.map_cpy = malloc((gen->map_ptr.map_lines + 1) * sizeof(char *));
 	fd = open(filename, O_RDONLY);
-	ft_fill_map(fd, row, column, general);
-	close(fd);
+	row = 0;
+	line = get_next_line(fd);
+	while (line[0] < '0' || line[0] > '9')
+	{
+		gen->map_ptr.data[row] = malloc((ft_strlen(line) + 1) * sizeof(char));
+		gen->map_ptr.data[row] = ft_strdup(line);
+		row++;
+		free(line);
+		line = get_next_line(fd);
+	}
+	gen->map_ptr.data[row] = NULL;
+	ft_split_map_2(line, fd, gen);
 }
