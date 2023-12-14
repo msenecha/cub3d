@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
+/*   By: msenecha <msenecha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:12:22 by svidal            #+#    #+#             */
-/*   Updated: 2023/12/14 11:56:59 by msenecha         ###   ########.fr       */
+/*   Updated: 2023/12/14 13:50:01 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@
 # define WIN_HEIGHT 1080 //hauteur
 # define TEXTURE_SIZE 64
 
-# define MINI_TILESIZE 32
+# define MINI_TILESIZE 16
 
 // STRUCTURES
 

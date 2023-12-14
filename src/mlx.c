@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
+/*   By: msenecha <msenecha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 17:31:36 by svidal            #+#    #+#             */
-/*   Updated: 2023/12/14 11:54:21 by msenecha         ###   ########.fr       */
+/*   Updated: 2023/12/14 15:36:16 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ void display_minimap(t_general *general)
 	int j;
 
 	y = 0;
-	while (y < general->map_ptr.map_lines)
+	while (general->map_ptr.map[y])
 	{
 		x = 0;
-		while (x < general->map_ptr.nb_columns - 1)
+		while (general->map_ptr.map[y][x] != '\n')
 		{
 			if (general->map_ptr.map[y][x] == '0')
 				color = 0x00FF0000;
@@ -85,5 +85,5 @@ void	ft_mlx_win(t_general *general)
 	if (general->img_ptr.addr == NULL)
 		ft_error_msg("Error: minimap image not initialized", general);
 	display_minimap(general);
-	mlx_put_image_to_window(general->mlx_ptr, general->win_ptr, general->img_ptr.main_img, 0, WIN_HEIGHT - 32 * general->map_ptr.map_lines);
+	mlx_put_image_to_window(general->mlx_ptr, general->win_ptr, general->img_ptr.main_img, 0, WIN_HEIGHT - (MINI_TILESIZE * general->map_ptr.map_lines));
 }
