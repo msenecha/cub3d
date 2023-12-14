@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msenecha <msenecha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:48:54 by svidal            #+#    #+#             */
-/*   Updated: 2023/12/13 19:07:17 by msenecha         ###   ########.fr       */
+/*   Updated: 2023/12/13 20:14:29 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	ft_max_line_len(char **map)
 	int		len_max;
 	int		current_len;
 	int		i;
-	
+
 	i = 0;
 	len_max = 0;
 	while (map[i])
@@ -61,7 +61,7 @@ char	**ft_copy_map(char **map_cpy, t_general *gen)
 {
 	char	**map;
 	int		i;
-	
+
 	i = 0;
 	map = malloc((gen->map_ptr.map_lines + 1) * sizeof(char *));
 	while (map_cpy[i])
@@ -90,7 +90,10 @@ void	ft_split_map_2(char *line, int fd, t_general *gen)
 	gen->map_ptr.map_cpy[row] = NULL;
 	gen->map_ptr.nb_columns = ft_max_line_len(gen->map_ptr.map_cpy);
 	close(fd);
+	print_tab(gen->map_ptr.data);
+	print_tab(gen->map_ptr.map_cpy);
 	gen->map_ptr.map = ft_copy_map(gen->map_ptr.map_cpy, gen);
+	print_tab(gen->map_ptr.map);
 }
 
 void	ft_split_map(char *filename, t_general *gen)

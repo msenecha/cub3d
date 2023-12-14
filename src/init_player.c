@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msenecha <msenecha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 15:33:25 by svidal            #+#    #+#             */
-/*   Updated: 2023/12/13 18:21:58 by msenecha         ###   ########.fr       */
+/*   Updated: 2023/12/13 20:20:58 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ void	ft_nb_players(t_general *general)
 	int		j;
 
 	i = 0;
-	while (i < general->map_ptr.map_lines)
+	while (general->map_ptr.map_cpy[i])
 	{
 		j = 0;
-		while (j < general->map_ptr.nb_columns )
+		while (general->map_ptr.map_cpy[i][j])
 		{
 			c = general->map_ptr.map_cpy[i][j];
 			if (c == 'N' || c == 'S' || c == 'E' || c == 'W')

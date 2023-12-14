@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msenecha <msenecha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 18:15:08 by svidal            #+#    #+#             */
-/*   Updated: 2023/12/13 18:39:10 by msenecha         ###   ########.fr       */
+/*   Updated: 2023/12/13 20:27:27 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,14 +104,15 @@ void	ft_invalid_char_error(t_general *general)
 	//printf("invalid characters starting from line %d\n", i);
 	//printf("nb_lines: %d\n", general->map_ptr.nb_lines);
 	//printf("nb_columns: %d\n", general->map_ptr.nb_columns);
-	while (i < general->map_ptr.map_lines)
+	while (general->map_ptr.map_cpy[i])
 	{
 		j = 0;
-		while (j < general->map_ptr.nb_columns)
+		while (general->map_ptr.map_cpy[i][j])
 		{
 			c = general->map_ptr.map_cpy[i][j];
 			//check caractere invalide dans la map
-			if (c != 'N' && c != 'S' && c != 'E' && c != 'W' && c != '0' && c != '1' && c != '\n')
+			// rajout du \n et de l'espace mais a voir parce que si on en met un au milieu de la map ca marche pas
+			if (c != 'N' && c != 'S' && c != 'E' && c != 'W' && c != '0' && c != '1' && c != '\n' && c != ' ')
 			{
 				ft_error_msg("Error: invalid character in the game!\n", general);
 				return ;

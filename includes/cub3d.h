@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msenecha <msenecha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:12:22 by svidal            #+#    #+#             */
-/*   Updated: 2023/12/13 19:07:29 by msenecha         ###   ########.fr       */
+/*   Updated: 2023/12/14 11:56:59 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@
 # define WIN_HEIGHT 1080 //hauteur
 # define TEXTURE_SIZE 64
 
+# define MINI_TILESIZE 32
+
 // STRUCTURES
 
 typedef struct s_map
@@ -75,14 +77,16 @@ typedef struct s_map
 	int			nb_columns;
 }	t_map;
 
+
 typedef struct s_img
 {
-	void	*mlx_img;
+	void		*main_img;
 	//void	*floor;
 	//void	*wall;
-	int			width;
-	int			height;
-	int			size_line;
+	char	*addr;
+	int		pixel_bits;
+	int		size_line;
+	int		endian;
 }	t_img;
 
 typedef struct s_infos
@@ -149,6 +153,7 @@ typedef struct s_ray
 	double	wall_dist;
 }	t_ray;
 
+
 typedef struct s_general
 {
 	void		*mlx_ptr;
@@ -204,5 +209,8 @@ int		ft_max_line_len(char **map);
 
 /* mlx */
 void	ft_mlx_win(t_general *general);
+
+/* utils */
+void	print_tab(char **tab);
 
 #endif

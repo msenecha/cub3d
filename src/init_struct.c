@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msenecha <msenecha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:38:35 by svidal            #+#    #+#             */
-/*   Updated: 2023/12/13 18:46:29 by msenecha         ###   ########.fr       */
+/*   Updated: 2023/12/13 22:37:10 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,13 @@ void	ft_init_s_map(t_map *map_ptr)
 	map_ptr->nb_columns = 0;
 }
 
-void	ft_init_s_img(t_img *img_ptr)
+void	ft_init_s_img(t_img *img)
 {
-	img_ptr->mlx_img = NULL;
-	img_ptr->width = 0;
-	img_ptr->height = 0;
-	img_ptr->size_line = 0;
+	//img->main_img = NULL;
+	img->addr = NULL;
+	img->pixel_bits = 0;
+	img->size_line = 0;
+	img->endian = 0;
 }
 
 void	ft_init_s_pst(t_pst *pst_ptr)
