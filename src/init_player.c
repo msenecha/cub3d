@@ -6,7 +6,7 @@
 /*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 15:33:25 by svidal            #+#    #+#             */
-/*   Updated: 2023/12/13 20:20:58 by msenecha         ###   ########.fr       */
+/*   Updated: 2023/12/15 11:24:19 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ void	ft_pst_player(t_general *general)
 		{
 			if (general->map_ptr.map_cpy[i][j] == 'N' || general->map_ptr.map_cpy[i][j] == 'S' || general->map_ptr.map_cpy[i][j] == 'E' || general->map_ptr.map_cpy[i][j] == 'W')
 			{
-				general->pst_ptr.first_pst_x = i;
-				general->pst_ptr.first_pst_y = j;
+				general->player_ptr.pst_x = i;
+				general->player_ptr.pst_y = j;
 			}
 			j++;
 		}

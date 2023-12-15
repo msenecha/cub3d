@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msenecha <msenecha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 16:54:52 by msenecha          #+#    #+#             */
-/*   Updated: 2023/12/13 19:12:08 by msenecha         ###   ########.fr       */
+/*   Updated: 2023/12/15 10:18:48 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,11 @@ int	main(int argc, char **argv)
 		ft_error_msg("Error: no file specified!\n", gen);
 	else
 	{
-		ft_init_s_gen(gen);		
+		ft_init_s_gen(gen);
 		if(every_bloody_error(argv[1], gen))
 			return (1);
 		ft_mlx_win(gen);
+		raycasting(gen);
 		// init mlx, textures
 		// img display
 		// start game
