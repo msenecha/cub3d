@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
+/*   By: msenecha <msenecha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:12:22 by svidal            #+#    #+#             */
-/*   Updated: 2023/12/15 10:38:06 by msenecha         ###   ########.fr       */
+/*   Updated: 2023/12/15 15:18:35 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,6 +206,7 @@ void	ft_split_map_2(char *line, int fd, t_general *gen);
 char	**ft_copy_map(char **map_cpy, t_general *gen);
 void	ft_nb_lines(char *filename, t_general *gen);
 int		ft_max_line_len(char **map);
+void 	display_minimap(t_general *general);
 
 /* mlx */
 void	ft_mlx_win(t_general *general);
@@ -215,4 +216,8 @@ void	print_tab(char **tab);
 
 /* raycasting */
 void	raycasting(t_general *gen);
+
+/* controls */
+void	ft_handle_events(t_general *gen);
+
 #endif

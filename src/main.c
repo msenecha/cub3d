@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
+/*   By: msenecha <msenecha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 16:54:52 by msenecha          #+#    #+#             */
-/*   Updated: 2023/12/15 10:18:48 by msenecha         ###   ########.fr       */
+/*   Updated: 2023/12/15 16:57:26 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,10 @@ int	main(int argc, char **argv)
 		if(every_bloody_error(argv[1], gen))
 			return (1);
 		ft_mlx_win(gen);
-		raycasting(gen);
+		display_minimap(gen);
+		mlx_put_image_to_window(gen->mlx_ptr, gen->win_ptr, gen->img_ptr.main_img, 0, WIN_HEIGHT - (MINI_TILESIZE * gen->map_ptr.map_lines));
+		ft_handle_events(gen);
+		//raycasting(gen);
 		// init mlx, textures
 		// img display
 		// start game
@@ -50,8 +53,6 @@ int	main(int argc, char **argv)
 		// mlx_loop_hook(); ?
 		mlx_loop(gen->mlx_ptr);
 	}
-	ft_free_map(gen->map_ptr.map, gen);
-	ft_free_map(gen->map_ptr.data, gen);
 	return (0);
 }
 

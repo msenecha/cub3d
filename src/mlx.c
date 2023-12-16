@@ -6,7 +6,7 @@
 /*   By: msenecha <msenecha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 17:31:36 by svidal            #+#    #+#             */
-/*   Updated: 2023/12/14 15:36:16 by msenecha         ###   ########.fr       */
+/*   Updated: 2023/12/15 15:08:13 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,4 @@ void	ft_mlx_win(t_general *general)
 			&general->img_ptr.endian);
 	if (general->img_ptr.addr == NULL)
 		ft_error_msg("Error: minimap image not initialized", general);
-	display_minimap(general);
-	mlx_put_image_to_window(general->mlx_ptr, general->win_ptr, general->img_ptr.main_img, 0, WIN_HEIGHT - (MINI_TILESIZE * general->map_ptr.map_lines));
 }
