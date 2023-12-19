@@ -6,7 +6,7 @@
 /*   By: svidal <svidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:38:35 by svidal            #+#    #+#             */
-/*   Updated: 2023/12/12 15:42:44 by svidal           ###   ########.fr       */
+/*   Updated: 2023/12/19 12:21:47 by svidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,23 @@ void	ft_init_s_map(t_map *map_ptr)
 {
 	map_ptr->map = NULL;
 	map_ptr->map_cpy = NULL;
+	map_ptr->data = NULL;
 	map_ptr->path = NULL;
 	map_ptr->map_width = 0;
 	map_ptr->map_height = 0;
 	map_ptr->nb_lines = 0;
+	map_ptr->map_lines = 0;
+	map_ptr->data_lines = 0;
 	map_ptr->nb_columns = 0;
 }
 
-void	ft_init_s_img(t_img *img_ptr)
+void	ft_init_s_img(t_img *img)
 {
-	img_ptr->mlx_img = NULL;
-	img_ptr->width = 0;
-	img_ptr->height = 0;
-	img_ptr->size_line = 0;
+	//img->main_img = NULL;
+	img->addr = NULL;
+	img->pixel_bits = 0;
+	img->size_line = 0;
+	img->endian = 0;
 }
 
 void	ft_init_s_pst(t_pst *pst_ptr)
@@ -51,4 +55,5 @@ void	ft_init_s_player(t_player *player_ptr)
 	player_ptr->move_x = 0;
 	player_ptr->move_y = 0;
 	player_ptr->rotate = 0;
+	player_ptr->nb_player = 0;
 }

@@ -5,38 +5,46 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: svidal <svidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/01 16:54:52 by msenecha          #+#    #+#             */
-/*   Updated: 2023/12/12 16:10:30 by svidal           ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/12/19 12:16:14 by svidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "../includes/cub3d.h"
+
+int	every_bloody_error(char *filename, t_general *gen)
+{
+	if (ft_check_file(filename, gen) == 0)
+			return (1);
+	ft_split_map(filename, gen);
+	ft_pst_player(gen);
+	ft_nb_players(gen);
+	ft_map_ext_error(filename, gen);
+	ft_all_errors(gen);
+	ft_free_map(gen->map_ptr.map_cpy, gen);
+	return (0);
+}
 
 int	main(int argc, char **argv)
 {
-	char		*filename;
-	t_general	*general;
+	t_general	*gen;
 
-	general = malloc(sizeof(t_general));
-	if (general == NULL)
-		return (free(general), general = NULL, 0);
+	gen = malloc(sizeof(t_general));
+	if (gen == NULL)
+		return (free(gen), gen = NULL, 0);
 	if (argc != 2)
-		ft_error_msg("Error: no file specified!\n", general);
+		ft_error_msg("Error: no file specified!\n", gen);
 	else
 	{
-		filename = argv[1];
-		if (ft_check_file(filename, general) == 0)
+		ft_init_s_gen(gen);
+		if(every_bloody_error(argv[1], gen))
 			return (1);
-		ft_creation_map(filename, general);
-		ft_pst_player(general);
-		ft_nb_players(general);
-		printf("nb joueur(s): %d\n", general->player_ptr.nb_player);
-		ft_map_ext_error(filename, general);
-		ft_all_errors(general);
-		ft_init_s_gen(general);
-
-
-		ft_mlx_win(general);
+		ft_mlx_win(gen);
+		display_minimap(gen);
+		mlx_put_image_to_window(gen->mlx_ptr, gen->win_ptr, gen->img_ptr.main_img, 0, WIN_HEIGHT - (MINI_TILESIZE * gen->map_ptr.map_lines));
+		ft_handle_events(gen);
+		//raycasting(gen);
 		// init mlx, textures
 		// img display
 		// start game
@@ -44,7 +52,7 @@ int	main(int argc, char **argv)
 
 		//ft_exit_game(general);
 		// mlx_loop_hook(); ?
-		mlx_loop(general->mlx_ptr);
+		mlx_loop(gen->mlx_ptr);
 	}
 	return (0);
 }

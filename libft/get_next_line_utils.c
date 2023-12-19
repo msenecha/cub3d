@@ -6,7 +6,7 @@
 /*   By: svidal <svidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 14:31:31 by svidal            #+#    #+#             */
-/*   Updated: 2023/12/06 18:13:58 by svidal           ###   ########.fr       */
+/*   Updated: 2023/12/19 12:17:56 by svidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	}
 	return (dest);
 }
-
+/*
 char	*ft_strdup(const char *str)
 {
 	size_t	len;
@@ -56,7 +56,7 @@ char	*ft_strdup(const char *str)
 		return (NULL);
 	return (ft_memcpy(cpy, str, len));
 }
-
+*/
 char	*ft_strchr(const char *str, int c)
 {
 	if (!str)

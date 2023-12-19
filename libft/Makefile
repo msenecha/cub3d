@@ -6,7 +6,7 @@
 #    By: svidal <svidal@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/20 16:53:40 by svidal            #+#    #+#              #
-#    Updated: 2023/12/06 18:12:15 by svidal           ###   ########.fr        #
+#    Updated: 2023/12/19 12:18:21 by svidal           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ NAME	=	libft.a
 
 CC	=	gcc
 
-CFLAGS	=	-Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS	=	-Wall -Wextra -Werror -g
 
 RM	=	rm -f
 

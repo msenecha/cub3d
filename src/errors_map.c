@@ -6,7 +6,7 @@
 /*   By: svidal <svidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 18:15:08 by svidal            #+#    #+#             */
-/*   Updated: 2023/12/12 14:09:39 by svidal           ###   ########.fr       */
+/*   Updated: 2023/12/19 12:19:42 by svidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_map_ext_error(const char *filename, t_general *general)
 //empty map -> OK
 void	ft_empty_map_error(t_general *general)
 {
-	if (general == NULL || general->map_ptr.nb_columns == 0 || general->map_ptr.nb_lines == 0)
+	if (general == NULL || general->map_ptr.nb_columns == 0 || general->map_ptr.map_lines == 0)
 		ft_error_msg("Error: the file is empty!\n", general);
 
 }
@@ -101,17 +101,18 @@ void	ft_invalid_char_error(t_general *general)
 	//j'ignore les lignes qui ne commencent pas par 0 ou 1
 	//while (i < general->map_ptr.nb_lines && !ft_ignore_empty_and_config(general->map_ptr.map[i]))
 	//	i++;
-	printf("invalid characters starting from line %d\n", i);
-	printf("nb_lines: %d\n", general->map_ptr.nb_lines);
-	printf("nb_columns: %d\n", general->map_ptr.nb_columns);
-	while (i < general->map_ptr.nb_lines)
+	//printf("invalid characters starting from line %d\n", i);
+	//printf("nb_lines: %d\n", general->map_ptr.nb_lines);
+	//printf("nb_columns: %d\n", general->map_ptr.nb_columns);
+	while (general->map_ptr.map_cpy[i])
 	{
 		j = 0;
-		while (j < general->map_ptr.nb_columns)
+		while (general->map_ptr.map_cpy[i][j])
 		{
-			c = general->map_ptr.map[i][j];
+			c = general->map_ptr.map_cpy[i][j];
 			//check caractere invalide dans la map
-			if (c != 'N' && c != 'S' && c != 'E' && c != 'W' && c != '0' && c != '1')
+			// rajout du \n et de l'espace mais a voir parce que si on en met un au milieu de la map ca marche pas
+			if (c != 'N' && c != 'S' && c != 'E' && c != 'W' && c != '0' && c != '1' && c != '\n' && c != ' ')
 			{
 				ft_error_msg("Error: invalid character in the game!\n", general);
 				return ;
@@ -125,7 +126,6 @@ void	ft_invalid_char_error(t_general *general)
 // check nb players inside the map
 void	ft_wrong_nb_player(t_general *general)
 {
-	printf("nb joueur(s): %d\n", general->player_ptr.nb_player);
 	if (general->player_ptr.nb_player != 1)
 		ft_error_msg("Error: the game must contain 1 player!\n", general);
 }
