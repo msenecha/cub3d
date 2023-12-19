@@ -6,16 +6,11 @@
 /*   By: msenecha <msenecha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:09:00 by msenecha          #+#    #+#             */
-/*   Updated: 2023/12/15 19:16:45 by msenecha         ###   ########.fr       */
+/*   Updated: 2023/12/19 10:36:37 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-void    move_forward(t_general *gen)
-{
-     if (gen->player_ptr.pst_x)
-}
 
 int	ft_close(t_general *gen)
 {
