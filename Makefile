@@ -6,7 +6,7 @@
 #    By: svidal <svidal@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/01 15:12:37 by svidal            #+#    #+#              #
-#    Updated: 2023/12/19 12:17:25 by svidal           ###   ########.fr        #
+#    Updated: 2023/12/20 16:04:00 by svidal           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,8 +39,8 @@ NAME	=	cub3d
 
 CC		=	gcc
 
-CFLAGS	=	-Wall -Wextra -Werror -g
-MFLAGS	=	-ldl -lmlx -L${MLX_DIR} -lm -lXext -lX11 -Imlx $(MLX_PATH)
+CFLAGS	=	-Wall -Wextra -Werror -g -fsanitize=address
+MFLAGS	=	-lasan -ldl -lmlx -L${MLX_DIR} -lm -lXext -lX11 -Imlx $(MLX_PATH)
 IFLAGS	=	-I ./includes
 LFLAGS	=	-L $(LIBFT_DIR) -lft
 

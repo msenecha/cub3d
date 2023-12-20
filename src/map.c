@@ -6,7 +6,7 @@
 /*   By: svidal <svidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:48:54 by svidal            #+#    #+#             */
-/*   Updated: 2023/12/19 12:22:45 by svidal           ###   ########.fr       */
+/*   Updated: 2023/12/20 16:31:21 by svidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_nb_lines(char *filename, t_general *gen)
 	fd = open(filename, O_RDONLY);
 	line_nb = 0;
 	line = get_next_line(fd);
-	while (line[0] < '0' || line[0] > '9')
+	while (line && (line[0] < '0' || line[0] > '9'))
 	{
 		line_nb++;
 		free(line);
@@ -35,6 +35,8 @@ void	ft_nb_lines(char *filename, t_general *gen)
 		free(line);
 		line = get_next_line(fd);
 	}
+	//if (line_nb == 0)
+	//	ft_error_msg("Error: missing map in the file!\n", gen);
 	gen->map_ptr.map_lines = line_nb;
 	close(fd);
 }
@@ -100,6 +102,12 @@ void	ft_split_map(char *filename, t_general *gen)
 	char	*line;
 
 	ft_nb_lines(filename, gen);
+	if (gen->map_ptr.nb_lines == 0)
+	{
+		printf("Error: mising map in the file!\n");
+		free(gen);
+		exit (0);
+	}
 	gen->map_ptr.data = malloc((gen->map_ptr.data_lines + 1) * sizeof(char *));
 	gen->map_ptr.map_cpy = malloc((gen->map_ptr.map_lines + 1) * sizeof(char *));
 	fd = open(filename, O_RDONLY);

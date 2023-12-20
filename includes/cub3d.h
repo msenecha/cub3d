@@ -6,7 +6,7 @@
 /*   By: svidal <svidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:12:22 by svidal            #+#    #+#             */
-/*   Updated: 2023/12/19 12:17:36 by svidal           ###   ########.fr       */
+/*   Updated: 2023/12/20 15:15:23 by svidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,9 +177,10 @@ typedef struct s_general
 void	ft_error_msg(char *str, t_general *general);
 void	ft_map_ext_error(const char *filename, t_general *general);
 void	ft_empty_map_error(t_general *general);
-void	ft_map_wall_error(t_general *general);
 void	ft_invalid_char_error(t_general *general);
 void	ft_wrong_nb_player(t_general *general);
+int		ft_check_wall_error(t_general *general, int i, int j);
+void	ft_map_wall_error(t_general *general);
 void	ft_all_errors(t_general *general);
 int		ft_check_file(const char *filename, t_general *general);
 bool	ft_ignore_empty_and_config(char *line);
