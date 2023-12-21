@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: svidal <svidal@student.42.fr>              +#+  +:+       +#+         #
+#    By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/01 15:12:37 by svidal            #+#    #+#              #
-#    Updated: 2023/12/20 16:04:00 by svidal           ###   ########.fr        #
+#    Updated: 2023/12/20 23:46:55 by msenecha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ SRC_DIR = ./src/
 
 SRC	=	main.c init_struct.c init_struct_2.c init_player.c map.c errors_file_arg.c \
 			errors_map.c errors_map_2.c errors_map_utils.c free_and_exit.c mlx.c \
-			raycasting.c controls.c
+			raycasting.c controls.c txtr.c rotate.c render.c move.c move_utils.c \
+			
 
 OBJS	=	${addprefix ${SRC_DIR}, $(SRC:.c=.o)}
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svidal <svidal@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:48:54 by svidal            #+#    #+#             */
-/*   Updated: 2023/12/20 16:31:21 by svidal           ###   ########.fr       */
+/*   Updated: 2023/12/20 20:55:18 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	ft_split_map(char *filename, t_general *gen)
 	char	*line;
 
 	ft_nb_lines(filename, gen);
-	if (gen->map_ptr.nb_lines == 0)
+	if (gen->map_ptr.map_lines == 0)
 	{
 		printf("Error: mising map in the file!\n");
 		free(gen);

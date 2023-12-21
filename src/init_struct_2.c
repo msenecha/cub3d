@@ -3,29 +3,62 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct_2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svidal <svidal@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 19:38:45 by svidal            #+#    #+#             */
-/*   Updated: 2023/12/19 12:22:04 by svidal           ###   ########.fr       */
+/*   Updated: 2023/12/20 23:38:12 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	ft_init_s_txtr(t_txtr *txtr_ptr)
-{
-	txtr_ptr->north = NULL;
-	txtr_ptr->south = NULL;
-	txtr_ptr->east = NULL;
-	txtr_ptr->west = NULL;
-	txtr_ptr->floor = 0;
-	txtr_ptr->wall = 0;
-	txtr_ptr->size = 0;
-	txtr_ptr->tex_x = 0;
-	txtr_ptr->tex_y = 0;
-}
-//other init to be done for textures
 
+//other init to be done for textures
+void	init_NS_player(t_player *player)
+{
+	if (player->dir == 'S')
+	{
+		player->dir_x = 0;
+		player->dir_y = 1;
+		player->plan_x = -0.66;
+		player->plan_y = 0;
+	}
+	else if (player->dir == 'N')
+	{
+		player->dir_x = 0;
+		player->dir_y = -1;
+		player->plan_x = 0.66;
+		player->plan_y = 0;
+	}
+	else
+		return ;
+}
+
+void	init_EW_player(t_player *player)
+{
+	if (player->dir == 'W')
+	{
+		player->dir_x = -1;
+		player->dir_y = 0;
+		player->plan_x = 0;
+		player->plan_y = -0.66;
+	}
+	else if (player->dir == 'E')
+	{
+		player->dir_x = 1;
+		player->dir_y = 0;
+		player->plan_x = 0;
+		player->plan_y = 0.66;
+	}
+	else
+		return ;
+}
+
+void	player_direction(t_general *gen)
+{
+	init_NS_player(&gen->player_ptr);
+	init_EW_player(&gen->player_ptr);
+}
 //voir ou on l'appelle celle la
 void	ft_init_s_ray(t_ray *ray_ptr)
 {
@@ -46,6 +79,7 @@ void	ft_init_s_ray(t_ray *ray_ptr)
 	ray_ptr->delta_dist_x = 0;
 	ray_ptr->delta_dist_y = 0;
 	ray_ptr->wall_dist = 0;
+	ray_ptr->wall_x = 0;
 }
 
 void	ft_init_s_gen(t_general *general)

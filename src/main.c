@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svidal <svidal@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/12/19 12:16:14 by svidal           ###   ########.fr       */
+/*   Updated: 2023/12/21 01:26:29 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,12 @@ int	main(int argc, char **argv)
 		ft_init_s_gen(gen);
 		if(every_bloody_error(argv[1], gen))
 			return (1);
+		player_direction(gen);
 		ft_mlx_win(gen);
-		display_minimap(gen);
-		mlx_put_image_to_window(gen->mlx_ptr, gen->win_ptr, gen->img_ptr.main_img, 0, WIN_HEIGHT - (MINI_TILESIZE * gen->map_ptr.map_lines));
+		render_images(gen);
+		//display_minimap(gen);
+		//mlx_put_image_to_window(gen->mlx_ptr, gen->win_ptr, gen->img_ptr.main_img, 0, WIN_HEIGHT - (MINI_TILESIZE * gen->map_ptr.map_lines));
 		ft_handle_events(gen);
-		//raycasting(gen);
 		// init mlx, textures
 		// img display
 		// start game

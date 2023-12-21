@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecullier <ecullier@student.42perpignan.    +#+  +:+       +#+        */
+/*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 18:31:29 by parallels         #+#    #+#             */
-/*   Updated: 2023/12/14 15:00:06 by ecullier         ###   ########.fr       */
+/*   Updated: 2023/12/20 23:30:57 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
+
 
 static void	set_frame(t_data *data, t_img *image, int x, int y)
 {
