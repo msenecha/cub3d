@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msenecha <msenecha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:12:22 by svidal            #+#    #+#             */
-/*   Updated: 2023/12/15 15:18:35 by msenecha         ###   ########.fr       */
+/*   Updated: 2023/12/21 01:52:44 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@
 # define D 100
 # define S 115
 # define W 119
+# define SPEED 0.01
+# define ROTATE 0.01
 
 # define WIN_TITLE "cub3D"
 
@@ -55,9 +57,13 @@
 # define WALL '1'
 # define FLOOR '0'
 
-# define WIN_WIDTH 1920 //largeur
-# define WIN_HEIGHT 1080 //hauteur
+# define WIN_WIDTH 1080 //largeur
+# define WIN_HEIGHT 720 //hauteur
 # define TEXTURE_SIZE 64
+# define NORTH 0
+# define SOUTH 1
+# define EAST 2
+# define WEST 3
 
 # define MINI_TILESIZE 16
 
@@ -104,7 +110,7 @@ typedef struct s_pst //position de depart du joueur
 
 typedef struct s_player
 {
-	char	*dir;
+	char	dir;
 	double	pst_x; // position du joueur x
 	double	pst_y;
 	double	dir_x; // vecteur de direction (commence à -1 pour N, 1 pour S, 0 sinon)
@@ -126,10 +132,15 @@ typedef struct s_txtr
 	char	*east;
 	char	*west;
 	int				*floor;
-	int				*wall;
+	int				*ceiling;
+	unsigned long	hex_floor;
+	unsigned long	hex_ceiling;
 	int				size;
 	int				tex_x;
 	int				tex_y;
+	int				index;
+	double			step;
+	double			pos;
 }	t_txtr;
 
 typedef struct s_ray
@@ -151,6 +162,7 @@ typedef struct s_ray
 	double	delta_dist_x; //distance que rayon parcours entre chaque point d'intersection vertical
 	double	delta_dist_y; //distance que le rayon parcours entre chaque point d'intersection horizontal
 	double	wall_dist;
+	double	wall_x;
 }	t_ray;
 
 
@@ -177,9 +189,10 @@ typedef struct s_general
 void	ft_error_msg(char *str, t_general *general);
 void	ft_map_ext_error(const char *filename, t_general *general);
 void	ft_empty_map_error(t_general *general);
-void	ft_map_wall_error(t_general *general);
 void	ft_invalid_char_error(t_general *general);
 void	ft_wrong_nb_player(t_general *general);
+int		ft_check_wall_error(t_general *general, int i, int j);
+void	ft_map_wall_error(t_general *general);
 void	ft_all_errors(t_general *general);
 int		ft_check_file(const char *filename, t_general *general);
 bool	ft_ignore_empty_and_config(char *line);
@@ -215,9 +228,26 @@ void	ft_mlx_win(t_general *general);
 void	print_tab(char **tab);
 
 /* raycasting */
-void	raycasting(t_general *gen);
+void	raycasting(t_player *player, t_general *gen);
 
 /* controls */
 void	ft_handle_events(t_general *gen);
+
+
+/* rajout externes */
+void	set_image_pixel(t_img *image, int x, int y, int color);
+void	render_images(t_general *gen);
+int		render(t_general *gen);
+void	update_texture_pixels(t_general *gen, t_txtr *tex, t_ray *ray, int x);
+void	init_texture_pixels(t_general *gen);
+void	raycasting(t_player *player, t_general *gen);
+int		validate_move(t_general *gen, double new_x, double new_y);
+void	player_direction(t_general *gen);
+int		move_player(t_general *gen);
+int		rotate_player(t_general *gen, double rot_dir);
+void	init_ray(t_ray *ray);
+void	init_texture_img(t_general *gen, t_img *image, char *path);
+void	init_img(t_general *gen, t_img *image, int width, int height);
+
 
 #endif

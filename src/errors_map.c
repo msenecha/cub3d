@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
+/*   By: svidal <svidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 18:15:08 by svidal            #+#    #+#             */
-/*   Updated: 2023/12/13 20:27:27 by msenecha         ###   ########.fr       */
+/*   Updated: 2023/12/20 14:21:02 by svidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,53 +30,6 @@ void	ft_empty_map_error(t_general *general)
 
 }
 
-
-//check invalid character inside the map
-// NE MARCHE PAAAAASSSSSSSSSSSSSSSSS
-/*
-void	ft_invalid_char_error(t_general *general)
-{
-	char	c;
-	int		i;
-	int		j;
-
-	i = 0;
-	//j'ignore lignes vides ou lignes de textures et couleurs
-
-	printf("nb_lines: %d\n", general->map_ptr.nb_lines);
-	printf("nb_columns: %d\n", general->map_ptr.nb_columns);
-	while (i < general->map_ptr.nb_lines && (ft_strlen(general->map_ptr.map[i]) == 0
-			|| ft_white_space(general->map_ptr.map[i])
-			|| ft_strcmp(general->map_ptr.map[i], "NO") == 0
-			|| ft_strcmp(general->map_ptr.map[i], "SO") == 0
-			|| ft_strcmp(general->map_ptr.map[i], "WE") == 0
-			|| ft_strcmp(general->map_ptr.map[i], "EA") == 0
-			|| ft_strcmp(general->map_ptr.map[i], "F") == 0
-			|| ft_strcmp(general->map_ptr.map[i], "C") == 0
-			|| ft_strcmp(general->map_ptr.map[i], " ") == 0
-			|| ft_strcmp(general->map_ptr.map[i], "\t") == 0))
-		i++;
-
-	while (i < general->map_ptr.nb_lines)
-	{
-		j = 0;
-		while (j < general->map_ptr.nb_columns)
-		{
-			c = general->map_ptr.map[i][j];
-			//check caractere invalide dans la map
-			if (c != 'N' && c != 'S' && c != 'E' && c != 'W' && c != '0' && c != '1')
-			{
-				printf("invalid characters starting from line %d\n", i);
-				ft_error_msg("Error: invalid character in the game!\n", general);
-				return ;
-			}
-			j++;
-		}
-		i++;
-	}
-}
-*/
-
 bool	ft_ignore_empty_and_config(char *line)
 {
 	int	k;
@@ -98,12 +51,6 @@ void	ft_invalid_char_error(t_general *general)
 	int		j;
 
 	i = 0;
-	//j'ignore les lignes qui ne commencent pas par 0 ou 1
-	//while (i < general->map_ptr.nb_lines && !ft_ignore_empty_and_config(general->map_ptr.map[i]))
-	//	i++;
-	//printf("invalid characters starting from line %d\n", i);
-	//printf("nb_lines: %d\n", general->map_ptr.nb_lines);
-	//printf("nb_columns: %d\n", general->map_ptr.nb_columns);
 	while (general->map_ptr.map_cpy[i])
 	{
 		j = 0;

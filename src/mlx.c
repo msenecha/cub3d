@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   mlx.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msenecha <msenecha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 17:31:36 by svidal            #+#    #+#             */
-/*   Updated: 2023/12/19 12:10:24 by msenecha         ###   ########.fr       */
+/*   Updated: 2023/12/21 01:25:37 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
+/*
 void	put_pixel(t_general *gen, int x, int y, int color)
 {
 	int		i;
@@ -63,7 +64,7 @@ void display_minimap(t_general *general)
 		y++;
 	}
 }
-
+*/
 
 //creation and opening window
 void	ft_mlx_win(t_general *general)
@@ -76,12 +77,4 @@ void	ft_mlx_win(t_general *general)
 	general->win_ptr = mlx_new_window(general->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, WIN_TITLE);
 	if (general->win_ptr == NULL)
 		ft_error_msg("Error: error with pointer win_ptr", general);
-	general->img_ptr.main_img = mlx_new_image(general->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
-	if (general->img_ptr.main_img == NULL)
-		ft_error_msg("Error: minimap image not initialized", general);
-	general->img_ptr.addr = mlx_get_data_addr(general->img_ptr.main_img,
-			&general->img_ptr.pixel_bits, &general->img_ptr.size_line,
-			&general->img_ptr.endian);
-	if (general->img_ptr.addr == NULL)
-		ft_error_msg("Error: minimap image not initialized", general);
 }
