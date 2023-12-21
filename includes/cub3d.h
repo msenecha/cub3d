@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
+/*   By: msenecha <msenecha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:12:22 by svidal            #+#    #+#             */
-/*   Updated: 2023/12/21 01:52:44 by msenecha         ###   ########.fr       */
+/*   Updated: 2023/12/21 16:39:52 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -248,6 +248,9 @@ int		rotate_player(t_general *gen, double rot_dir);
 void	init_ray(t_ray *ray);
 void	init_texture_img(t_general *gen, t_img *image, char *path);
 void	init_img(t_general *gen, t_img *image, int width, int height);
-
+void	init_textures(t_general *gen);
+int		get_file_gen(t_general *gen, char **data);
+int		fill_color_textures(t_general *gen, t_txtr *tex, char *line, int j);
+void	free_tab(void **tab);
 
 #endif

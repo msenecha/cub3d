@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
+/*   By: msenecha <msenecha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/12/21 01:26:29 by msenecha         ###   ########.fr       */
+/*   Updated: 2023/12/21 15:20:39 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int	main(int argc, char **argv)
 		if(every_bloody_error(argv[1], gen))
 			return (1);
 		player_direction(gen);
+		get_file_gen(gen, gen->map_ptr.data);
+		init_textures(gen);
 		ft_mlx_win(gen);
 		render_images(gen);
 		//display_minimap(gen);

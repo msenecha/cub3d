@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
+/*   By: msenecha <msenecha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:38:35 by svidal            #+#    #+#             */
-/*   Updated: 2023/12/21 01:43:08 by msenecha         ###   ########.fr       */
+/*   Updated: 2023/12/21 16:45:08 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 void	init_img(t_general *gen, t_img *image, int width, int height)
 {
+	image->main_img = NULL;
 	ft_init_s_img(image);
 	image->main_img = mlx_new_image(gen->mlx_ptr, width, height);
 	if (image->main_img == NULL)
@@ -29,6 +30,8 @@ void	init_texture_img(t_general *gen, t_img *image, char *path)
 	t_txtr *tex;
 
 	tex = &gen->txtr_ptr;
+	image->main_img = NULL;
+	printf("tex->size = %d\n", tex->size);
 	ft_init_s_img(image);
 	image->main_img = mlx_xpm_file_to_image(gen->mlx_ptr, path, &tex->size,
 			&tex->size);
@@ -47,7 +50,7 @@ void	ft_init_s_txtr(t_txtr *txtr_ptr)
 	txtr_ptr->west = NULL;
 	txtr_ptr->floor = 0;
 	txtr_ptr->ceiling = 0;
-	txtr_ptr->size = 0;
+	txtr_ptr->size = 64;
 	txtr_ptr->tex_x = 0;
 	txtr_ptr->tex_y = 0;
 	txtr_ptr->index = 0;
