@@ -6,7 +6,7 @@
 /*   By: svidal <svidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:43:50 by svidal            #+#    #+#             */
-/*   Updated: 2023/12/20 16:13:43 by svidal           ###   ########.fr       */
+/*   Updated: 2023/12/21 16:42:22 by svidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,27 @@ int	ft_check_file(const char *filename, t_general *general)
 	if (fd != -1)
 	{
 		close(fd);
-		return (1);
+		return (0);
 	}
 	else
 	{
 		write(2, "Error: the file does not exist!\n", 32);
 		free(general);
-		return (0);
+		return (1);
 	}
+}
+
+bool	ft_file_dir(char *filename)
+{
+	int		fd;
+	bool	result;
+
+	result = false;
+	fd = open(filename, __O_DIRECTORY);
+	if (fd >= 0)
+	{
+		close (fd);
+		result = true;
+	}
+	return (result);
 }

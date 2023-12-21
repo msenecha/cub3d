@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
+/*   By: svidal <svidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:12:22 by svidal            #+#    #+#             */
-/*   Updated: 2023/12/21 01:52:44 by msenecha         ###   ########.fr       */
+/*   Updated: 2023/12/21 16:44:42 by svidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,11 +191,16 @@ void	ft_map_ext_error(const char *filename, t_general *general);
 void	ft_empty_map_error(t_general *general);
 void	ft_invalid_char_error(t_general *general);
 void	ft_wrong_nb_player(t_general *general);
-int		ft_check_wall_error(t_general *general, int i, int j);
 void	ft_map_wall_error(t_general *general);
+void	ft_check_txtr(t_general *gen, char *filename);
 void	ft_all_errors(t_general *general);
 int		ft_check_file(const char *filename, t_general *general);
+int		ft_check_wall_error(t_general *general, int i, int j);
+int		ft_check_colors(int *color, t_general *general);
+int		ft_img_ext_error(const char *filename, t_general *gen);
 bool	ft_ignore_empty_and_config(char *line);
+bool	ft_file_dir(char *filename);
+unsigned long	ft_convert_colors_hexa(int *tab);
 
 /* free and exit */
 void	ft_free_map(char **tab, t_general *general);
@@ -212,6 +217,11 @@ void	ft_init_s_ray(t_ray *ray_ptr);
 void	ft_init_s_gen(t_general *general);
 void	ft_pst_player(t_general *general);
 void	ft_nb_players(t_general *general);
+void	init_ray(t_ray *ray);
+void	init_texture_img(t_general *gen, t_img *image, char *path);
+void	init_img(t_general *gen, t_img *image, int width, int height);
+void	ft_init_txtr(t_general *gen);
+int		ft_xpm_to_tab(t_general *gen, char *path);
 
 /* map */
 void	ft_split_map(char *filename, t_general *gen);
@@ -245,9 +255,7 @@ int		validate_move(t_general *gen, double new_x, double new_y);
 void	player_direction(t_general *gen);
 int		move_player(t_general *gen);
 int		rotate_player(t_general *gen, double rot_dir);
-void	init_ray(t_ray *ray);
-void	init_texture_img(t_general *gen, t_img *image, char *path);
-void	init_img(t_general *gen, t_img *image, int width, int height);
+
 
 
 #endif
