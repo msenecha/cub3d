@@ -1,0 +1,118 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/14 18:48:50 by msenecha          #+#    #+#             */
+/*   Updated: 2023/12/20 23:45:45 by msenecha         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/cub3d.h"
+
+static void	init_raycasting(int x, t_ray *ray, t_player *player)
+{
+	init_ray(ray);
+	ray->camera_x = 2 * x / (double)WIN_WIDTH - 1;
+	ray->ray_dir_x = player->dir_x + player->plan_x * ray->camera_x;
+	ray->ray_dir_y = player->dir_y + player->plan_y * ray->camera_x;
+	ray->map_x = (int)player->pst_x;
+	ray->map_y = (int)player->pst_y;
+	ray->delta_dist_x = fabs(1 / ray->ray_dir_x);
+	ray->delta_dist_y = fabs(1 / ray->ray_dir_y);
+}
+
+static void	set_dda(t_ray *ray, t_player *player)
+{
+	if (ray->ray_dir_x < 0)
+	{
+		ray->step_x = -1;
+		ray->side_dist_x = (player->pst_x - ray->map_x) * ray->delta_dist_x;
+	}
+	else
+	{
+		ray->step_x = 1;
+		ray->side_dist_x = (ray->map_x + 1.0 - player->pst_x) * ray->delta_dist_x;
+	}
+	if (ray->ray_dir_y < 0)
+	{
+		ray->step_y = -1;
+		ray->side_dist_y = (player->pst_y - ray->map_y) * ray->delta_dist_y;
+	}
+	else
+	{
+		ray->step_y = 1;
+		ray->side_dist_y = (ray->map_y + 1.0 - player->pst_y) * ray->delta_dist_y;
+	}
+}
+
+static void	perform_dda(t_general *gen, t_ray *ray)
+{
+	int	hit;
+
+	hit = 0;
+	while (hit == 0)
+	{
+		if (ray->side_dist_x < ray->side_dist_y)
+		{
+			ray->side_dist_x += ray->delta_dist_x;
+			ray->map_x += ray->step_x;
+			ray->side = 0;
+		}
+		else
+		{
+			ray->side_dist_y += ray->delta_dist_y;
+			ray->map_y += ray->step_y;
+			ray->side = 1;
+		}
+		if (ray->map_y < 0.25
+			|| ray->map_x < 0.25
+			|| ray->map_y > gen->map_ptr.map_lines - 0.25
+			|| ray->map_x > gen->map_ptr.nb_columns - 1.25)
+			break ;
+		else if (gen->map_ptr.map[ray->map_y][ray->map_x] > '0')
+			hit = 1;
+	}
+}
+
+static void	calculate_line_height(t_ray *ray, t_general *gen, t_player *player)
+{
+	if (ray->side == 0)
+		ray->wall_dist = (ray->side_dist_x - ray->delta_dist_x);
+	else
+		ray->wall_dist = (ray->side_dist_y - ray->delta_dist_y);
+	ray->line_height = (int)(gen->win_height / ray->wall_dist);
+	ray->draw_start = -(ray->line_height) / 2 + gen->win_height / 2;
+	if (ray->draw_start < 0)
+		ray->draw_start = 0;
+	ray->draw_end = ray->line_height / 2 + gen->win_height / 2;
+	if (ray->draw_end >= gen->win_height)
+		ray->draw_end = gen->win_height - 1;
+	if (ray->side == 0)
+		ray->wall_x = player->pst_y + ray->wall_dist * ray->ray_dir_y;
+	else
+		ray->wall_x = player->pst_x + ray->wall_dist * ray->ray_dir_x;
+	ray->wall_x -= floor(ray->wall_x);
+}
+
+void	raycasting(t_player *player, t_general *gen)
+{
+	t_ray	ray;
+	t_txtr	*tex;
+	int		x;
+
+	x = 0;
+	ray = gen->ray_ptr;
+	tex = &gen->txtr_ptr;
+	while (x < gen->win_width)
+	{
+		init_raycasting(x, &ray, player);
+		set_dda(&ray, player);
+		perform_dda(gen, &ray);
+		calculate_line_height(&ray, gen, player);
+		update_texture_pixels(gen, tex, &ray, x);
+		x++;
+	}
+}
