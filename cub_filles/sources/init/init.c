@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svidal <svidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/03 21:39:16 by parallels         #+#    #+#             */
-/*   Updated: 2023/12/14 16:02:06 by vfuster-         ###   ########.fr       */
+/*   Created: 2024/01/04 15:17:03 by svidal            #+#    #+#             */
+/*   Updated: 2024/01/04 15:21:03 by svidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-void	init_img_clean(t_img *img)
+void	ft_init_img(t_img *img)
 {
 	img->img = NULL;
 	img->addr = NULL;
@@ -21,12 +21,12 @@ void	init_img_clean(t_img *img)
 	img->endian = 0;
 }
 
-void	init_ray(t_ray *ray)
+void	ft_init_ray(t_ray *ray)
 {
 	ft_memset(ray, 0, sizeof(t_ray));
 }
 
-static void	init_mapinfo(t_mapinfo *mapinfo)
+static void	ft_init_map_infos(t_mapinfo *mapinfo)
 {
 	mapinfo->fd = 0;
 	mapinfo->line_count = 0;
@@ -37,7 +37,7 @@ static void	init_mapinfo(t_mapinfo *mapinfo)
 	mapinfo->index_end_of_map = 0;
 }
 
-static void	init_player(t_player *player)
+static void	ft_init_player(t_player *player)
 {
 	player->dir = '\0';
 	player->pos_x = 0.0;
@@ -52,14 +52,14 @@ static void	init_player(t_player *player)
 	player->rotate = 0;
 }
 
-void	init_data(t_data *data)
+void	ft_init_data(t_data *data)
 {
 	data->mlx = NULL;
 	data->win = NULL;
 	data->win_height = WIN_HEIGHT;
 	data->win_width = WIN_WIDTH;
-	init_player(&data->player);
-	init_texinfo(&data->texinfo);
+	ft_init_player(&data->player);
+	ft_init_txtr_inf(&data->texinfo);
 	data->map = NULL;
 	init_mapinfo(&data->mapinfo);
 	data->texture_pixels = NULL;

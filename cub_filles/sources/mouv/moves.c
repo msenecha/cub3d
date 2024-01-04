@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svidal <svidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 22:06:42 by parallels         #+#    #+#             */
-/*   Updated: 2023/12/14 16:01:01 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/04 16:54:01 by svidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	key_press_handler(int key, t_data *data)
 {
 	if (key == XK_Escape)
-		exit_game(data);
+		ft_exit_game(data);
 	if (key == XK_Left)
 		data->player.rotate -= 1;
 	if (key == XK_Right)
@@ -34,7 +34,7 @@ static int	key_press_handler(int key, t_data *data)
 static int	key_release_handler(int key, t_data *data)
 {
 	if (key == XK_Escape)
-		exit_game(data);
+		ft_exit_game(data);
 	if (key == XK_w && data->player.move_y == 1)
 		data->player.move_y = 0;
 	if (key == XK_s && data->player.move_y == -1)
@@ -52,7 +52,7 @@ static int	key_release_handler(int key, t_data *data)
 
 void	listen_for_input(t_data *data)
 {
-	mlx_hook(data->win, ClientMessage, NoEventMask, exit_game, data);
+	mlx_hook(data->win, ClientMessage, NoEventMask, ft_exit_game, data);
 	mlx_hook(data->win, KeyPress, KeyPressMask, key_press_handler, data);
 	mlx_hook(data->win, KeyRelease, KeyReleaseMask, key_release_handler, data);
 }

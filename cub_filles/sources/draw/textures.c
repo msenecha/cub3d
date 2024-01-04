@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svidal <svidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 10:25:07 by ecullier          #+#    #+#             */
-/*   Updated: 2023/12/14 16:00:07 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/04 16:52:32 by svidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ void	init_texture_pixels(t_data *data)
 	data->texture_pixels = ft_calloc(data->win_height + 1,
 			sizeof * data->texture_pixels);
 	if (!data->texture_pixels)
-		exit_cleanup(data, error_msg(NULL, ERROR_MALLOC, 1));
+		ft_exit(data, error_msg(NULL, ERROR_MALLOC, 1));
 	i = 0;
 	while (i < data->win_height)
 	{
 		data->texture_pixels[i] = ft_calloc(data->win_width + 1,
 				sizeof * data->texture_pixels);
 		if (!data->texture_pixels[i])
-			exit_cleanup(data, error_msg(NULL, ERROR_MALLOC, 1));
+			ft_exit(data, error_msg(NULL, ERROR_MALLOC, 1));
 		i++;
 	}
 }

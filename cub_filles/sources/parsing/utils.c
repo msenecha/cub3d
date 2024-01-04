@@ -1,35 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svidal <svidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/04 16:51:39 by svidal            #+#    #+#             */
-/*   Updated: 2024/01/04 16:57:04 by svidal           ###   ########.fr       */
+/*   Created: 2024/01/04 16:42:33 by svidal            #+#    #+#             */
+/*   Updated: 2024/01/04 16:44:40 by svidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-void	ft_exit(t_data *data, int code)
+int	ft_space(char c)
 {
-	if (!data)
-		exit(code);
-	if (data->win && data->mlx)
-		mlx_destroy_window(data->mlx, data->win);
-	if (data->mlx)
-	{
-		mlx_destroy_display(data->mlx);
-		mlx_loop_end(data->mlx);
-		free(data->mlx);
-	}
-	ft_free(data);
-	exit(code);
+	if (c != ' ' && c != '\t' && c != '\r'
+		&& c != '\n' && c != '\v' && c != '\f')
+		return (1);
+	else
+		return (0);
 }
 
-int	ft_exit_game(t_data *data)
+size_t	ft_len_max(t_mapinfo *map, int i)
 {
-	ft_exit(data, 0);
-	return (0);
+	size_t	len_max;
+
+	len_max = ft_strlen(map->file[i]);
+	while (map->file[i])
+	{
+		if (ft_strlen(map->file[i]) > len_max)
+			len_max = ft_strlen(map->file[i]);
+		i++;
+	}
+	return (len_max);
 }

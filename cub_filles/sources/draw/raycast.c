@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svidal <svidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 21:52:35 by parallels         #+#    #+#             */
-/*   Updated: 2023/12/14 16:00:28 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/04 15:19:35 by svidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	init_raycasting(int x, t_ray *ray, t_player *player)
 {
-	init_ray(ray);
+	ft_init_ray(ray);
 	ray->camera_x = 2 * x / (double)WIN_WIDTH - 1;
 	ray->dir_x = player->dir_x + player->plane_x * ray->camera_x;
 	ray->dir_y = player->dir_y + player->plane_y * ray->camera_x;

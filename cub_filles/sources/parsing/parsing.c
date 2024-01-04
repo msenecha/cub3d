@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svidal <svidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/30 16:18:09 by vfuster-          #+#    #+#             */
-/*   Updated: 2023/12/14 15:59:08 by vfuster-         ###   ########.fr       */
+/*   Created: 2024/01/04 16:31:24 by svidal            #+#    #+#             */
+/*   Updated: 2024/01/04 16:55:37 by svidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-static int	get_number_of_lines(char *path)
+static int	ft_nb_lines(char *path)
 {
 	int		fd;
 	char	*line;
-	int		line_count;
+	int		nb_lines;
 
-	line_count = 0;
+	nb_lines = 0;
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 		error_msg(path, strerror(errno), errno);
@@ -27,16 +27,16 @@ static int	get_number_of_lines(char *path)
 		line = get_next_line(fd);
 		while (line != NULL)
 		{
-			line_count++;
+			nb_lines++;
 			free(line);
 			line = get_next_line(fd);
 		}
 		close(fd);
 	}
-	return (line_count);
+	return (nb_lines);
 }
 
-static void	fill_tab(int row, int column, int i, t_data *data)
+static void	ft_fill_tab(int row, int column, int i, t_data *data)
 {
 	char	*line;
 
@@ -46,8 +46,8 @@ static void	fill_tab(int row, int column, int i, t_data *data)
 		data->mapinfo.file[row] = ft_calloc(ft_strlen(line) + 1, sizeof(char));
 		if (!data->mapinfo.file[row])
 		{
-			error_msg(NULL, ERROR_MALLOC, 0);
-			return (free_tab((void **)data->mapinfo.file));
+			error_msg(NULL, "Error: m/calloc failed!\n", 0);
+			return (ft_free_tab((void **)data->mapinfo.file));
 		}
 		while (line[i] != '\0')
 			data->mapinfo.file[row][column++] = line[i++];
@@ -60,7 +60,7 @@ static void	fill_tab(int row, int column, int i, t_data *data)
 	data->mapinfo.file[row] = NULL;
 }
 
-void	parse_data(char *path, t_data *data)
+void	ft_parsing(char *path, t_data *data)
 {
 	int		row;
 	int		i;
@@ -69,13 +69,13 @@ void	parse_data(char *path, t_data *data)
 	i = 0;
 	row = 0;
 	column = 0;
-	data->mapinfo.line_count = get_number_of_lines(path);
+	data->mapinfo.line_count = ft_nb_lines(path);
 	data->mapinfo.path = path;
 	data->mapinfo.file = ft_calloc(data->mapinfo.line_count \
 			+ 1, sizeof(char *));
 	if (!(data->mapinfo.file))
 	{
-		error_msg(NULL, ERROR_MALLOC, 0);
+		error_msg(NULL, "Error: m/calloc failed!\n", 0);
 		return ;
 	}
 	data->mapinfo.fd = open(path, O_RDONLY);
@@ -83,7 +83,7 @@ void	parse_data(char *path, t_data *data)
 		error_msg(path, strerror(errno), 1);
 	else
 	{
-		fill_tab(row, column, i, data);
+		ft_fill_tab(row, column, i, data);
 		close(data->mapinfo.fd);
 	}
 }

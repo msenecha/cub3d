@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svidal <svidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 09:16:25 by vfuster-          #+#    #+#             */
-/*   Updated: 2023/12/14 16:02:44 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/04 16:17:35 by svidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,29 +51,29 @@
 //error messages
 # define ERROR_USAGE "usage: ./cub3d <path/to/map.cub>"
 
-# define ERROR_FILE_NOT_CUB "Not a .cub file"
-# define ERROR_FILE_NOT_XPM "Not an .xpm file"
-# define ERROR_FILE_IS_DIRECTORY "Is a directory"
-# define ERROR_FLOOR_CEILING "Invalid floor/ceiling RGB color(s)"
-# define ERROR_COLOR_FLOOR "Invalid floor RGB color"
-# define ERROR_COLOR_CEILING "Invalid ceiling RGB color"
-# define ERROR_INVALID_MAP "Map description is either wrong or incomplete"
-# define ERROR_INV_LETTER "Invalid character in map"
-# define ERROR_NUM_PLAYER "Map has more than one player"
-# define ERROR_TEX_RGB_VAL "Invalid RGB value (min: 0, max: 255)"
-# define ERROR_TEX_MISSING "Missing texture(s)"
-# define ERROR_TEX_INVALID "Invalid texture(s)"
-# define ERROR_COLOR_MISSING "Missing color(s)"
-# define ERROR_MAP_MISSING "Missing map"
-# define ERROR_MAP_TOO_SMALL "Map is not at least 3 lines high"
-# define ERROR_MAP_NO_WALLS "Map is not surrounded by walls"
-# define ERROR_MAP_LAST "Map is not the last element in file"
-# define ERROR_PLAYER_POS "Invalid player position"
-# define ERROR_PLAYER_DIR "Map has no player position (expected N, S, E or W)"
-# define ERROR_MALLOC "Could not allocate memory"
-# define ERROR_MLX_START "Could not start mlx"
-# define ERROR_MLX_WIN "Could not create mlx window"
-# define ERROR_MLX_IMG "Could not create mlx image"
+# define ERROR_FILE_NOT_CUB "Error: file extension must be '.cub'!\n"
+# define ERROR_FILE_NOT_XPM "Error: file extension must be '.xpm'!\n"
+# define ERROR_FILE_IS_DIRECTORY "Error: you are in a directory\n"
+# define ERROR_FLOOR_CEILING "Error: invalid floor or ceiling color(s)!\n"
+# define ERROR_COLOR_FLOOR "Error: invalid floor color!\n"
+# define ERROR_COLOR_CEILING "Error: invalid ceiling color!\n"
+# define ERROR_INVALID_MAP "Error: the map is invalid!\n"
+# define ERROR_INV_LETTER "Error: invalid character in the map!\n"
+# define ERROR_NUM_PLAYER "Error: the game must contain 1 player!\n"
+# define ERROR_TEX_RGB_VAL "Error: wrong color(s) value!\n"
+# define ERROR_TEX_MISSING "Error: missing texture(s)!\n"
+# define ERROR_TEX_INVALID "Error: invalid texture(s) path!\n"
+# define ERROR_COLOR_MISSING "Error: missing color(s)!\n"
+# define ERROR_MAP_MISSING "Error: no map!\n"
+# define ERROR_MAP_TOO_SMALL "Error: map to small!\n"
+# define ERROR_MAP_NO_WALLS "Error: missing wall(s) on the edges!\n"
+# define ERROR_MAP_LAST "Error: map must be at the end of the file!\n"
+# define ERROR_PLAYER_POS "Error: invalid player position!\n"
+# define ERROR_PLAYER_DIR "Error: player position not defined!\n"
+# define ERROR_MALLOC "Error: m/calloc failed!\n"
+# define ERROR_MLX_START "Error: mlx not started!\n"
+# define ERROR_MLX_WIN "Error: mlx window creation failed!\n"
+# define ERROR_MLX_IMG "Error: mlx image creation failed!\n"
 
 /*-----------ENUM---------*/
 

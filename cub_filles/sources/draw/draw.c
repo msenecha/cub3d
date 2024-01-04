@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msenecha <msenecha@student.42perpignan.    +#+  +:+       +#+        */
+/*   By: svidal <svidal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 18:31:29 by parallels         #+#    #+#             */
-/*   Updated: 2023/12/20 23:30:57 by msenecha         ###   ########.fr       */
+/*   Updated: 2024/01/04 15:19:23 by svidal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	render_frame(t_data *data)
 	int		y;
 
 	image.img = NULL;
-	init_img(data, &image, data->win_width, data->win_height);
+	ft_init_img(data, &image, data->win_width, data->win_height);
 	y = 0;
 	while (y < data->win_height)
 	{
@@ -49,7 +49,7 @@ static void	render_frame(t_data *data)
 static void	render_raycast(t_data *data)
 {
 	init_texture_pixels(data);
-	init_ray(&data->ray);
+	ft_init_ray(&data->ray);
 	raycasting(&data->player, data);
 	render_frame(data);
 }
