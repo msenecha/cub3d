@@ -1,7 +1,7 @@
-NO ./textures/NO_texture.xpm
-SO		./textures/SO_texture.xpm
-WE  ./textures/WE_texture.xpm
-EA ./textures/EA_texture.xpm
+NO textures/wall_1.xpm
+SO textures/wall_2.xpm
+WE    textures/wall_3.xpm
+EA textures/wall_4.xpm
 
 F 255, 0, 20
 C    150, 200
