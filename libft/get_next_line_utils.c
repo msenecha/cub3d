@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svidal <svidal@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msenecha <msenecha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 14:31:31 by svidal            #+#    #+#             */
-/*   Updated: 2023/12/19 12:17:56 by svidal           ###   ########.fr       */
+/*   Updated: 2024/01/05 15:38:31 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ char	*ft_strdup(const char *str)
 	return (ft_memcpy(cpy, str, len));
 }
 */
+
 char	*ft_strchr(const char *str, int c)
 {
 	if (!str)
@@ -93,4 +94,3 @@ char	*ft_strjoin(char *s1, char *s2)
 	free(s1);
 	return (str);
 }
-

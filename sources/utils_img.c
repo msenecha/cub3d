@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   utils_img.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msenecha <msenecha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/03 10:35:22 by svidal            #+#    #+#             */
-/*   Updated: 2024/01/05 15:37:52 by msenecha         ###   ########.fr       */
+/*   Created: 2024/01/04 15:30:56 by msenecha          #+#    #+#             */
+/*   Updated: 2024/01/05 15:36:44 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/cub3D.h"
 
-int	ft_isalpha(int c)
+void	my_put_pixel(t_image *image, int x, int y, int color)
 {
-	if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122))
-		return (1);
-	return (0);
+	int	pixel;
+
+	pixel = y * (image->size_line / 4) + x;
+	image->addr[pixel] = color;
 }

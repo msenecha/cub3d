@@ -1,20 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msenecha <msenecha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/03 10:35:22 by svidal            #+#    #+#             */
-/*   Updated: 2024/01/05 15:37:52 by msenecha         ###   ########.fr       */
+/*   Created: 2024/01/04 16:42:33 by svidal            #+#    #+#             */
+/*   Updated: 2024/01/05 14:07:04 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/cub3D.h"
 
-int	ft_isalpha(int c)
+int	ft_space(char c)
 {
-	if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122))
+	if (c != ' ' && c != '\t' && c != '\r'
+		&& c != '\n' && c != '\v' && c != '\f')
 		return (1);
-	return (0);
+	else
+		return (0);
+}
+
+size_t	ft_len_max(t_mapinfo *map, int i)
+{
+	size_t	len_max;
+
+	len_max = ft_strlen(map->file[i]);
+	while (map->file[i])
+	{
+		if (ft_strlen(map->file[i]) > len_max)
+			len_max = ft_strlen(map->file[i]);
+		i++;
+	}
+	return (len_max);
 }

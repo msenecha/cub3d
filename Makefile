@@ -3,21 +3,22 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: svidal <svidal@student.42.fr>              +#+  +:+       +#+         #
+#    By: msenecha <msenecha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/01 15:12:37 by svidal            #+#    #+#              #
-#    Updated: 2023/12/21 16:57:16 by svidal           ###   ########.fr        #
+#    Updated: 2024/01/05 15:46:48 by msenecha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ################################ SOURCES ################################
 
-SRC_DIR = ./src/
+SRC_DIR = ./sources/
 
-SRC	=	main.c init_struct.c init_struct_2.c init_player.c map.c errors_file_arg.c \
-			errors_map.c errors_map_2.c errors_map_utils.c free_and_exit.c mlx.c \
-			raycasting.c controls.c txtr.c rotate.c render.c move.c move_utils.c \
-			init_txtr.c init_img.c errors_txtr_colors.c
+SRC	=	main.c color_txtr_errors.c control_direction.c control_player_move.c\
+		control_player_position.c control_player_rotation.c dir_file_errors.c\
+		engine.c errors_msg.c events.c exit.c frame.c free.c get_file_data.c\
+		init.c map_errors.c map_size_errors.c map.c mlx_init.c parsing.c\
+		txtr_errors.c txtr_init.c txtr_render.c utils_img.c utils.c
 
 
 OBJS	=	${addprefix ${SRC_DIR}, $(SRC:.c=.o)}
@@ -31,7 +32,7 @@ LIBFT_PATH	=	${LIBFT_DIR}libft.a
 
 ################################ MINILIBX ################################
 
-MLX_DIR		=	./minilibx-linux/
+MLX_DIR		=	./minilibx_linux/
 MLX_PATH	=	${MLX_DIR}libmlx.a
 
 
@@ -41,8 +42,8 @@ NAME	=	cub3d
 
 CC		=	gcc
 
-CFLAGS	=	-Wall -Wextra -Werror -g -fsanitize=address
-MFLAGS	=	-lasan -ldl -lmlx -L${MLX_DIR} -lm -lXext -lX11 -Imlx $(MLX_PATH)
+CFLAGS	=	-Wall -Wextra -Werror -g
+MFLAGS	=	-ldl -lmlx -L${MLX_DIR} -lm -lXext -lX11 -Imlx $(MLX_PATH)
 IFLAGS	=	-I ./includes
 LFLAGS	=	-L $(LIBFT_DIR) -lft
 

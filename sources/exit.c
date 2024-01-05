@@ -1,20 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msenecha <msenecha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/03 10:35:22 by svidal            #+#    #+#             */
-/*   Updated: 2024/01/05 15:37:52 by msenecha         ###   ########.fr       */
+/*   Created: 2024/01/04 16:51:39 by svidal            #+#    #+#             */
+/*   Updated: 2024/01/05 14:07:04 by msenecha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/cub3D.h"
 
-int	ft_isalpha(int c)
+void	ft_exit(t_data *data, int code)
 {
-	if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122))
-		return (1);
+	if (!data)
+		exit(code);
+	if (data->win && data->mlx)
+		mlx_destroy_window(data->mlx, data->win);
+	if (data->mlx)
+	{
+		mlx_destroy_display(data->mlx);
+		mlx_loop_end(data->mlx);
+		free(data->mlx);
+	}
+	ft_free(data);
+	exit(code);
+}
+
+int	ft_exit_game(t_data *data)
+{
+	ft_exit(data, 0);
 	return (0);
 }
